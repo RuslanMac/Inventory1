@@ -5,7 +5,7 @@ from app.api.auth import basic_auth, token_auth
 from app.models import Worker
 
 
-@bp.route('/tokens', methods=['POST'])
+@bp.route('/login', methods=['POST'])
 @basic_auth.login_required
 def get_token():
 	token =  Worker.get_token(basic_auth.current_user())
@@ -13,7 +13,7 @@ def get_token():
 	return jsonify({'token': token })
 
 
-@bp.route('/tokens', methods=['DELETE'])
+@bp.route('/login', methods=['DELETE'])
 @token_auth.login_required
 def revoke_token():
 	token_auth.current_user().revoke_token()
