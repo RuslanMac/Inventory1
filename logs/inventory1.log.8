@@ -1,0 +1,104 @@
+2020-07-27 17:26:15,023 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-27 20:06:15,893 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-31 21:11:01,542 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-31 21:16:27,159 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-31 21:16:32,769 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 73, in get_report_motion
+    "material_objects": [
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 75, in <listcomp>
+    "operation": oidrep.Operations.Name
+AttributeError: 'result' object has no attribute 'Operations'
+2020-07-31 21:18:38,001 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-31 21:33:52,581 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-31 21:34:00,920 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 69, in get_report_motion
+    oid_report = db.session.query(Objects).join(Movements).filter(Objects.oid == row['oid']).filter(Movements.operation_date.between(row['begin'], row['end'])).join(Division).join(Operation).with_entities(Operations.Name, Movements.operation_date, Movements.asinfo, Movements.description).all()
+NameError: name 'Division' is not defined
+2020-07-31 21:35:45,405 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-31 21:35:54,070 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 69, in get_report_motion
+    oid_report = db.session.query(Objects).join(Movements).filter(Objects.oid == row['oid']).filter(Movements.operation_date.between(row['begin'], row['end'])).join(Operation).with_entities(Operations.Name, Movements.operation_date, Movements.asinfo, Movements.description).all()
+NameError: name 'Operation' is not defined
+2020-07-31 21:37:28,263 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-31 21:37:37,485 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-07-31 21:37:40,711 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 69, in get_report_motion
+    oid_report = db.session.query(Objects).join(Movements).filter(Objects.oid == row['oid']).filter(Movements.operation_date.between(row['begin'], row['end'])).join(Divisions).join(Operations).with_entities(Operations.Name, Movements.operation_date, Movements.asinfo, Movements.description).all()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2372, in join
+    return self._join(
+  File "<string>", line 2, in _join
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\base.py", line 227, in generate
+    fn(self, *args[1:], **kw)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2555, in _join
+    self._join_left_to_right(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2611, in _join_left_to_right
+    orm_join(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\util.py", line 1156, in join
+    return _ORMJoin(left, right, onclause, isouter, full)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\util.py", line 1055, in __init__
+    expression.Join.__init__(self, left, right, onclause, isouter, full)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\selectable.py", line 767, in __init__
+    self.onclause = self._match_primaries(self.left, self.right)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\selectable.py", line 916, in _match_primaries
+    return self._join_condition(left, right, a_subset=left_right)
+  File "<string>", line 2, in _join_condition
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\deprecations.py", line 139, in warned
+    return fn(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\selectable.py", line 966, in _join_condition
+    cls._joincond_trim_constraints(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\selectable.py", line 1079, in _joincond_trim_constraints
+    raise exc.AmbiguousForeignKeysError(
+sqlalchemy.exc.AmbiguousForeignKeysError: Can't determine join between 'Join object on Objects(81635456) and Movement(81342296)' and 'Division'; tables have more than one foreign key constraint relationship between them. Please specify the 'onclause' of this join explicitly.
+2020-07-31 21:38:31,941 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]

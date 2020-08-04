@@ -1,11 +1,12 @@
 import logging
 from flask import Flask, current_app
-from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
 from flask_migrate import Migrate
 from sqlalchemy import create_engine
 from config import Config
 from logging.handlers import RotatingFileHandler
 from sqlalchemy.ext.automap import automap_base
+from flask_sqlalchemy import SQLAlchemy
 import urllib
 import pyodbc
 import os
@@ -14,6 +15,7 @@ import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
+#CORS(app)
 
 db = SQLAlchemy(app)
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])

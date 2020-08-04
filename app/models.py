@@ -21,8 +21,16 @@ Objects = Base.classes.Objects
 Workers = Base.classes.Workers
 Operations = Base.classes.Operation
 Divisions = Base.classes.Division
+Movements = Base.classes.Movement
+Placements = Base.classes.Placement
 
 class Worker():
+
+	@staticmethod
+	def set_password_hash(password):
+		return generate_password_hash(password)
+
+	
 	@staticmethod
 	def check_password(workers, password):
 		return check_password_hash(workers.password_hash, password)
