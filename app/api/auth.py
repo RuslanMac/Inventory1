@@ -1,6 +1,7 @@
+from flask import g
 from flask_httpauth import HTTPBasicAuth, HTTPTokenAuth
 from app.api.errors import error_response
-from app.models import Workers, Worker
+from app.models import Worker
 from app import db
 
 
@@ -10,10 +11,12 @@ token_auth = HTTPTokenAuth()
 
 @basic_auth.verify_password
 def verify_password(login, password):
-	workers = db.session.query(Workers).filter(Workers.login == login).first()
-	if workers and Worker.check_password(workers, password):
-		return workers
+	workers = Worker.query.filter_by(login=login).first()
+	if workers is None:
+		return False
 
+	g.current_user = workers
+	return workers.check_password(password)
 
 @basic_auth.error_handler
 def basic_auth_error(status):
@@ -23,7 +26,8 @@ def basic_auth_error(status):
 
 @token_auth.verify_token
 def verify_token(token):
-	return Worker.check_token(token) if token else None
+	g.current_user = Worker.check_token(token) if token else None
+	return g.current_user is not None
 
 
 

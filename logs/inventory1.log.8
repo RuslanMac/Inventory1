@@ -1,9 +1,4 @@
-2020-08-03 22:58:02,374 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:06:18,332 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:07:24,088 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:08:42,115 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:14:53,496 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:15:25,249 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+2020-08-11 17:21:06,824 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -17,11 +12,16 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 107, in get_latest_info_object
-    "movement": objects_latest.movement,
-AttributeError: 'Objects' object has no attribute 'movement'
-2020-08-03 23:18:01,421 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:18:05,094 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\helpers.py", line 223, in make_response
+    return current_app.make_response(args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-08-11 17:22:38,265 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -35,22 +35,16 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 93, in get_latest_info_object
-    objects_latest = db.session.query(Objects, Divisions, Movements, Placements).join(Movements).join(Divisions, Divisions.division_id == Movements.division_id).join(Placements).filter(Objects.oid == oid).order_by(Movements.operation_date.desc()).first()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2372, in join
-    return self._join(
-  File "<string>", line 2, in _join
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\base.py", line 227, in generate
-    fn(self, *args[1:], **kw)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2555, in _join
-    self._join_left_to_right(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2579, in _join_left_to_right
-    ) = self._join_determine_implicit_left_side(left, right, onclause)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2715, in _join_determine_implicit_left_side
-    raise sa_exc.InvalidRequestError(
-sqlalchemy.exc.InvalidRequestError: Can't determine which FROM clause to join from, there are multiple FROMS which can join to this entity. Please use the .select_from() method to establish an explicit left side, as well as providing an explcit ON clause if not present already to help resolve the ambiguity.
-2020-08-03 23:26:27,518 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:26:30,513 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\helpers.py", line 223, in make_response
+    return current_app.make_response(args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-08-11 17:22:40,607 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -64,11 +58,16 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 107, in get_latest_info_object
-    "movement": objects_latest.movement_id,
-AttributeError: 'Objects' object has no attribute 'movement_id'
-2020-08-03 23:27:04,774 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:27:30,327 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\helpers.py", line 223, in make_response
+    return current_app.make_response(args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-08-11 17:23:26,527 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -82,11 +81,16 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 107, in get_latest_info_object
-    "movement": objects_latest.move_id,
-AttributeError: 'Objects' object has no attribute 'move_id'
-2020-08-03 23:28:42,485 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:28:45,726 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\helpers.py", line 223, in make_response
+    return current_app.make_response(args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-08-11 17:23:30,637 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -100,7 +104,12 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 107, in get_latest_info_object
-    "movement": objects_latest.move_id,
-AttributeError: 'Objects' object has no attribute 'move_id'
-2020-08-03 23:29:20,791 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\helpers.py", line 223, in make_response
+    return current_app.make_response(args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.

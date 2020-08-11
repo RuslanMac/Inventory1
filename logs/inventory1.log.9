@@ -1,4 +1,4 @@
-2020-08-01 00:27:54,074 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+2020-08-11 16:33:16,933 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,23 +12,12 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 99, in get_latest_info_object
-    "object_id": objects_latest.oid,
-AttributeError: 'ResultProxy' object has no attribute 'oid'
-2020-08-01 00:29:16,749 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:29:31,437 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:29:45,666 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:30:01,163 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:30:04,236 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Ошибка при преобразовании строки символов в тип uniqueidentifier. (8169) (SQLExecDirectW)')
-
-The above exception was the direct cause of the following exception:
-
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 144, in get_object1
+    info = db.session.query.join(Objects, Objects.oid == Movements.oid)
+AttributeError: 'function' object has no attribute 'join'
+2020-08-11 16:39:56,011 ERROR: Exception on /api/operations [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -42,34 +31,17 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 93, in get_latest_info_object
-    objects_latest = db.engine.execute("""SELECT *
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 2238, in execute
-    return connection.execute(statement, *multiparams, **params)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1006, in execute
-    return self._execute_text(object_, multiparams, params)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1175, in _execute_text
-    ret = self._execute_context(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
-    self._handle_dbapi_exception(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
-    util.raise_(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
-    raise exception
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Ошибка при преобразовании строки символов в тип uniqueidentifier. (8169) (SQLExecDirectW)')
-[SQL: SELECT *
-										FROM [Objects]
-										JOIN [Movement] ON [Objects].oid = [Movement].oid
-										JOIN [Division] ON [Division].division_id = [Movement].division_id
-										WHERE [Objects].oid = ?]
-[parameters: ('oid',)]
-(Background on this error at: http://sqlalche.me/e/13/f405)
-2020-08-01 00:31:13,504 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:31:16,710 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 29, in get_operations
+    'operations': [operation.Name for operation in operations]
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 29, in <listcomp>
+    'operations': [operation.Name for operation in operations]
+AttributeError: 'Operation' object has no attribute 'Name'
+2020-08-11 16:41:02,504 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-11 17:06:32,326 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -83,12 +55,16 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 99, in get_latest_info_object
-    "object_id": objects_latest.oid,
-AttributeError: 'ResultProxy' object has no attribute 'oid'
-2020-08-01 00:32:46,131 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:33:25,331 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:33:28,574 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\helpers.py", line 223, in make_response
+    return current_app.make_response(args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-08-11 17:07:32,257 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -102,12 +78,16 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 100, in get_latest_info_object
-    "name": objects_latest['object_Name'],
-TypeError: 'ResultProxy' object is not subscriptable
-2020-08-01 00:34:39,761 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:34:51,583 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-01 00:34:54,301 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\helpers.py", line 223, in make_response
+    return current_app.make_response(args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.
+2020-08-11 17:07:46,213 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -121,8 +101,12 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 100, in get_latest_info_object
-    "name": objects_latest[0],
-TypeError: 'ResultProxy' object is not subscriptable
-2020-08-01 00:38:06,671 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 22:38:53,691 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\helpers.py", line 223, in make_response
+    return current_app.make_response(args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2097, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The function either returned None or ended without a return statement.

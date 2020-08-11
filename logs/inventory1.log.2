@@ -1,8 +1,27 @@
-2020-08-11 16:12:32,759 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-11 16:12:54,188 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-11 16:26:27,597 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-11 16:27:53,193 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-11 16:28:01,085 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+2020-08-11 18:16:36,981 ERROR: Exception on /api/divisions [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 148, in decorated
+    user = self.authenticate(auth, password)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 347, in authenticate
+    return self.verify_token_callback(token)
+  File "C:\Users\1\inventory2\inventory1\app\api\auth.py", line 29, in verify_token
+    g.current_user = Worker.check_token(token) if token else None
+  File "C:\Users\1\inventory2\inventory1\app\models.py", line 143, in check_token
+    worker = Worker.query.filter_by(token=toekn).first()
+NameError: name 'toekn' is not defined
+2020-08-11 18:17:07,981 ERROR: Exception on /api/register [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -18,20 +37,10 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
     resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 144, in get_object1
-    info = db.session.query(Objects, Objects.oid == Movenets.oid)
-NameError: name 'Movenets' is not defined
-2020-08-11 16:28:29,475 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-11 16:28:32,452 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Неправильный синтаксис около конструкции "=". (102) (SQLExecDirectW)')
-
-The above exception was the direct cause of the following exception:
-
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 57, in register
+    confirm_password = row['confirm_password']
+KeyError: 'confirm_password'
+2020-08-11 18:17:27,895 ERROR: Exception on /api/register [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -47,32 +56,73 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
     resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 146, in get_object1
-    records = info.all()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3341, in all
-    return list(self)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3503, in __iter__
-    return self._execute_and_instances(context)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3528, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1014, in execute
-    return meth(self, multiparams, params)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1127, in _execute_clauseelement
-    ret = self._execute_context(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
-    self._handle_dbapi_exception(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
-    util.raise_(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
-    raise exception
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
-    self.dialect.do_execute(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Неправильный синтаксис около конструкции "=". (102) (SQLExecDirectW)')
-[SQL: SELECT [Objects].oid AS [Objects_oid], [Objects].[object_Name] AS [Objects_object_Name], [Objects].barcode AS [Objects_barcode], [Objects].inv_number AS [Objects_inv_number], [Objects].description AS [Objects_description], [Objects].asstatus AS [Objects_asstatus], [Objects].oid = [Movement].oid AS anon_1 
-FROM [Objects], [Movement]]
-(Background on this error at: http://sqlalche.me/e/13/f405)
-2020-08-11 16:30:56,850 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 63, in register
+    db.session.add(users)
+NameError: name 'users' is not defined
+2020-08-11 18:18:56,630 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-11 18:19:03,100 ERROR: Exception on /api/register [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 63, in register
+    db.session.add(workers)
+NameError: name 'workers' is not defined
+2020-08-11 18:19:16,184 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-11 18:19:56,694 ERROR: Exception on /api/login [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "C:\Users\1\inventory2\inventory1\app\api\tokens.py", line 13, in get_token
+    token = g.current_user.get_token()
+  File "C:\Users\1\inventory2\inventory1\app\models.py", line 133, in get_token
+    self.token = base64.b64encode(os.random(24)).decode('utf-8')
+AttributeError: module 'os' has no attribute 'random'
+2020-08-11 18:20:14,578 ERROR: Exception on /api/login [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "C:\Users\1\inventory2\inventory1\app\api\tokens.py", line 13, in get_token
+    token = g.current_user.get_token()
+  File "C:\Users\1\inventory2\inventory1\app\models.py", line 133, in get_token
+    self.token = base64.b64encode(os.random(24)).decode('utf-8')
+AttributeError: module 'os' has no attribute 'random'

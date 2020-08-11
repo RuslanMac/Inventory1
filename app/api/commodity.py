@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from app import db
-from app.models import Objects, Workers, Operations, Divisions,  Placements, Movements,  Worker
+from app.models import Object, Worker, Movement, Division, Placement, Operation
 from app.api import bp
 from app.api.auth import token_auth
 from app.api.errors import error_response
@@ -24,9 +24,9 @@ def get_object():
 @cross_origin()
 @token_auth.login_required
 def get_operations():
-	operations = db.session.query(Operations).all()
+	operations = Operation.query.all()
 	data = {
-			'operations': [operation.Name for operation in operations]
+			'operations': [operation.name for operation in operations]
 	}
 	return jsonify(data)
 
@@ -34,10 +34,11 @@ def get_operations():
 @token_auth.login_required
 @cross_origin()
 def get_divisions():
-	divisions = db.session.query(Divisions).all()
+	divisions = Division.query.all()
 	data = {
-			'divisions': [division.Name for division in divisions]
+			'divisions': [division.division_name for division in divisions]
 	}
+	return jsonify(data)    
 
 @bp.route('/placement', methods=['POST'])
 @token_auth.login_required
@@ -57,12 +58,14 @@ def register():
 	confirm_password = row['confirm_password']
 	if password != confirm_password:
 		return error_response(400, "The Confirm Password confirmation does not match")
-	password_hash = Worker.set_password_hash(row['password'])
 
-
-	new_worker = Workers(login = row['login'], password_hash = password_hash)
-	db.session.add(new_worker)
+	worker = Worker(login=row['login'])
+	worker.set_password(row['password'])
+	db.session.add(worker)
 	db.session.commit()
+
+
+
 	return jsonify({'request': 'ok'})
 
 @bp.route('/report/motion', methods=['POST'])
