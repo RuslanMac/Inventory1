@@ -1,9 +1,13 @@
-2020-08-03 22:58:02,374 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:06:18,332 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:07:24,088 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:08:42,115 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:14:53,496 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:15:25,249 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+2020-08-11 16:30:59,456 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    self.dialect.do_execute(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Неправильный синтаксис около конструкции "=". (102) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -17,11 +21,47 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 107, in get_latest_info_object
-    "movement": objects_latest.movement,
-AttributeError: 'Objects' object has no attribute 'movement'
-2020-08-03 23:18:01,421 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:18:05,094 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 146, in get_object1
+    records = info.all()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3341, in all
+    return list(self)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3503, in __iter__
+    return self._execute_and_instances(context)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3528, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1014, in execute
+    return meth(self, multiparams, params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1127, in _execute_clauseelement
+    ret = self._execute_context(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
+    self._handle_dbapi_exception(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
+    util.raise_(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    self.dialect.do_execute(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Неправильный синтаксис около конструкции "=". (102) (SQLExecDirectW)')
+[SQL: SELECT [Objects].oid AS [Objects_oid], [Objects].[object_Name] AS [Objects_object_Name], [Objects].barcode AS [Objects_barcode], [Objects].inv_number AS [Objects_inv_number], [Objects].description AS [Objects_description], [Objects].asstatus AS [Objects_asstatus], [Objects].oid = [Movement].oid AS anon_1 
+FROM [Objects], [Movement]]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2020-08-11 16:31:11,342 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-11 16:31:18,217 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    self.dialect.do_execute(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Неправильный синтаксис около конструкции "=". (102) (SQLExecDirectW)')
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -35,72 +75,34 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 93, in get_latest_info_object
-    objects_latest = db.session.query(Objects, Divisions, Movements, Placements).join(Movements).join(Divisions, Divisions.division_id == Movements.division_id).join(Placements).filter(Objects.oid == oid).order_by(Movements.operation_date.desc()).first()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2372, in join
-    return self._join(
-  File "<string>", line 2, in _join
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\base.py", line 227, in generate
-    fn(self, *args[1:], **kw)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2555, in _join
-    self._join_left_to_right(
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2579, in _join_left_to_right
-    ) = self._join_determine_implicit_left_side(left, right, onclause)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2715, in _join_determine_implicit_left_side
-    raise sa_exc.InvalidRequestError(
-sqlalchemy.exc.InvalidRequestError: Can't determine which FROM clause to join from, there are multiple FROMS which can join to this entity. Please use the .select_from() method to establish an explicit left side, as well as providing an explcit ON clause if not present already to help resolve the ambiguity.
-2020-08-03 23:26:27,518 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:26:30,513 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 107, in get_latest_info_object
-    "movement": objects_latest.movement_id,
-AttributeError: 'Objects' object has no attribute 'movement_id'
-2020-08-03 23:27:04,774 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:27:30,327 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 107, in get_latest_info_object
-    "movement": objects_latest.move_id,
-AttributeError: 'Objects' object has no attribute 'move_id'
-2020-08-03 23:28:42,485 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-08-03 23:28:45,726 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 107, in get_latest_info_object
-    "movement": objects_latest.move_id,
-AttributeError: 'Objects' object has no attribute 'move_id'
-2020-08-03 23:29:20,791 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 146, in get_object1
+    records = info.all()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3341, in all
+    return list(self)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3503, in __iter__
+    return self._execute_and_instances(context)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 3528, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1014, in execute
+    return meth(self, multiparams, params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1127, in _execute_clauseelement
+    ret = self._execute_context(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
+    self._handle_dbapi_exception(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
+    util.raise_(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    self.dialect.do_execute(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Неправильный синтаксис около конструкции "=". (102) (SQLExecDirectW)')
+[SQL: SELECT [Objects].oid AS [Objects_oid], [Objects].[object_Name] AS [Objects_object_Name], [Objects].barcode AS [Objects_barcode], [Objects].inv_number AS [Objects_inv_number], [Objects].description AS [Objects_description], [Objects].asstatus AS [Objects_asstatus], [Objects].oid = [Movement].oid AS anon_1 
+FROM [Objects], [Movement]]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2020-08-11 16:33:12,088 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]

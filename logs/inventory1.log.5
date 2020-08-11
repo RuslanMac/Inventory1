@@ -1,4 +1,4 @@
-2020-07-31 23:00:33,942 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+2020-08-04 16:31:51,890 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,11 +12,21 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 94, in get_latest_info_object
-    "object_id": objects_latest['oid'],
-TypeError: 'Objects' object is not subscriptable
-2020-07-31 23:01:41,422 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 23:01:44,169 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 126, in add_new_objects
+    VALUES (?, ?, ?)""", (row['object_Name'], row['description'] ,row['barcode'] ))
+KeyError: 'object_Name'
+2020-08-04 16:32:16,670 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    self.dialect.do_execute(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+pyodbc.IntegrityError: ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Не удалось вставить значение NULL в столбец "inv_number", таблицы "Test1DB.dbo.Objects"; в столбце запрещены значения NULL. Ошибка в INSERT. (515) (SQLExecDirectW); [23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Выполнение данной инструкции было прервано. (3621)')
+
+The above exception was the direct cause of the following exception:
+
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -30,11 +40,33 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 95, in get_latest_info_object
-    "name": objects_latest.name,
-AttributeError: 'Objects' object has no attribute 'name'
-2020-07-31 23:02:46,498 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 23:02:49,655 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 125, in add_new_objects
+    db.engine.execute("""INSERT INTO [Objects] ([object_Name], [description], [barcode])
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 2238, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1006, in execute
+    return self._execute_text(object_, multiparams, params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1175, in _execute_text
+    ret = self._execute_context(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
+    self._handle_dbapi_exception(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
+    util.raise_(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+    self.dialect.do_execute(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (pyodbc.IntegrityError) ('23000', '[23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Не удалось вставить значение NULL в столбец "inv_number", таблицы "Test1DB.dbo.Objects"; в столбце запрещены значения NULL. Ошибка в INSERT. (515) (SQLExecDirectW); [23000] [Microsoft][ODBC SQL Server Driver][SQL Server]Выполнение данной инструкции было прервано. (3621)')
+[SQL: INSERT INTO [Objects] ([object_Name], [description], [barcode])
+						VALUES (?, ?, ?)]
+[parameters: ('Принтер Canon', 'New item add', '000001418')]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+2020-08-04 16:34:53,697 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-04 16:34:58,672 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -48,69 +80,9 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 96, in get_latest_info_object
-    "discription": objects_latest.operation_date,
-AttributeError: 'Objects' object has no attribute 'operation_date'
-2020-07-31 23:04:02,329 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 23:15:01,456 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 23:15:03,825 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 92, in get_latest_info_object
-    objects_latest = db.session.query(Objects).join(Movements).join(Divisions.division_id == Movements.division_id).join(Operations).join(Placements).filter(Objects.oid == oid).order_by(Movements.operation_date.desc()).first()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2372, in join
-    return self._join(
-  File "<string>", line 2, in _join
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\base.py", line 227, in generate
-    fn(self, *args[1:], **kw)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 2469, in _join
-    raise sa_exc.ArgumentError(
-sqlalchemy.exc.ArgumentError: Expected mapped entity or selectable/table as join target
-2020-07-31 23:15:38,278 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 23:15:43,825 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 98, in get_latest_info_object
-    "operation": objects_latest.operation_id,
-AttributeError: 'Objects' object has no attribute 'operation_id'
-2020-07-31 23:18:10,673 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 23:18:12,794 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 92, in get_latest_info_object
-    objects_latest = db.session.query(Objects).join(Movements).join(Divisions, Divisions.division_id == Movements.division_id).join(Operations, Operations.operation_id == Movements.operation_ix).join(Placements).filter(Objects.oid == oid).order_by(Movements.operation_date.desc()).first()
-AttributeError: type object 'Movement' has no attribute 'operation_ix'
-2020-07-31 23:18:37,740 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 133, in add_new_objects
+    WHERE [Division].[Name] = ?), ?, ?, ?)""", (row['operation'], row['division'], row['description'], row['asinfo'], row['date']))
+KeyError: 'asinfo'
+2020-08-04 16:37:09,387 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]

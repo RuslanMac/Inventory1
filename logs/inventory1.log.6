@@ -1,4 +1,4 @@
-2020-07-31 22:43:45,043 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+2020-08-04 15:57:03,141 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,11 +12,9 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 92, in get_latest_info_object
-    objects_latest = db.session.query(Objects).join(Movements).filter(Objects.oid == oid).order_by(Movements.operation_data.desc)
-AttributeError: type object 'Movement' has no attribute 'operation_data'
-2020-07-31 22:46:16,689 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 22:46:22,917 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+TypeError: decorator() missing 1 required positional argument: 'f'
+2020-08-04 16:03:44,776 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-04 16:04:16,118 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -30,26 +28,10 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 92, in get_latest_info_object
-    objects_latest = db.session.query(Objects).join(Movements).filter(Objects.oid == oid).order_by(Movements.operation_date.desc)
-  File "<string>", line 2, in order_by
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\base.py", line 227, in generate
-    fn(self, *args[1:], **kw)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 1929, in order_by
-    criterion = self._adapt_col_list(criterion)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 338, in _adapt_col_list
-    return [
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 340, in <listcomp>
-    expression._literal_as_label_reference(o), True, True
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 4665, in _literal_as_label_reference
-    return _literal_as_text(element)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 4708, in _literal_as_text
-    return _literal_as(element, _no_text_coercion)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 4698, in _literal_as
-    raise exc.ArgumentError(
-sqlalchemy.exc.ArgumentError: SQL expression object expected, got object of type <class 'method'> instead
-2020-07-31 22:47:03,953 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 22:47:11,736 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+TypeError: decorator() missing 1 required positional argument: 'f'
+2020-08-04 16:05:02,627 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-04 16:10:01,546 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-04 16:10:11,648 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -63,26 +45,8 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 92, in get_latest_info_object
-    objects_latest = db.session.query(Objects).join(Movements).filter(Objects.oid == oid).order_by(Movements.operation_date.desc).first()
-  File "<string>", line 2, in order_by
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\base.py", line 227, in generate
-    fn(self, *args[1:], **kw)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 1929, in order_by
-    criterion = self._adapt_col_list(criterion)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 338, in _adapt_col_list
-    return [
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\query.py", line 340, in <listcomp>
-    expression._literal_as_label_reference(o), True, True
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 4665, in _literal_as_label_reference
-    return _literal_as_text(element)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 4708, in _literal_as_text
-    return _literal_as(element, _no_text_coercion)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\sql\elements.py", line 4698, in _literal_as
-    raise exc.ArgumentError(
-sqlalchemy.exc.ArgumentError: SQL expression object expected, got object of type <class 'method'> instead
-2020-07-31 22:48:40,083 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 22:48:44,372 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+TypeError: decorator() missing 1 required positional argument: 'f'
+2020-08-04 16:10:27,528 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -96,11 +60,8 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 94, in get_latest_info_object
-    "object_id": objects_latest['oid'],
-TypeError: 'Objects' object is not subscriptable
-2020-07-31 22:54:56,219 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-31 22:55:00,400 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+TypeError: decorator() missing 1 required positional argument: 'f'
+2020-08-04 16:21:32,624 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -114,7 +75,39 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 92, in get_latest_info_object
-    objects_latest = db.session.query(Objects).join(Movements).filter(Objects.oid == oid).order_by(desc(Movements.operation_date)).first()
-NameError: name 'desc' is not defined
-2020-07-31 23:00:30,889 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+TypeError: decorator() missing 1 required positional argument: 'f'
+2020-08-04 16:21:47,308 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-04 16:22:14,681 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-04 16:22:26,816 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-04 16:22:35,565 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+TypeError: decorator() missing 1 required positional argument: 'f'
+2020-08-04 16:23:34,116 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-04 16:23:40,348 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+TypeError: decorator() missing 1 required positional argument: 'f'
+2020-08-04 16:31:39,367 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]

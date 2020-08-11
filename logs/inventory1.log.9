@@ -1,112 +1,128 @@
-2020-07-27 14:00:28,160 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py:1891]
+2020-08-01 00:27:54,074 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 99, in get_latest_info_object
+    "object_id": objects_latest.oid,
+AttributeError: 'ResultProxy' object has no attribute 'oid'
+2020-08-01 00:29:16,749 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:29:31,437 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:29:45,666 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:30:01,163 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:30:04,236 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
     self.dialect.do_execute(
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-pyodbc.DataError: ('22007', '[22007] [Microsoft][ODBC SQL Server Driver][SQL Server]Преобразование типа данных nvarchar в тип данных datetime привело к выходу значения за пределы диапазона. (242) (SQLExecDirectW)')
+pyodbc.ProgrammingError: ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Ошибка при преобразовании строки символов в тип uniqueidentifier. (8169) (SQLExecDirectW)')
 
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
     raise value
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 63, in get_report_motion
-    oid_report = db.session.query(Objects, Movements, Operations, Divisions).filter(Objects.oid == row['oid']).filter(Movements.operation_date.between(row['begin'], row['end'])).with_entities(Operations.Name, Movements.operation_date, Movements.asinfo, Movements.description).all()
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\orm\query.py", line 3341, in all
-    return list(self)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\orm\query.py", line 3503, in __iter__
-    return self._execute_and_instances(context)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\orm\query.py", line 3528, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\engine\base.py", line 1014, in execute
-    return meth(self, multiparams, params)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\sql\elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\engine\base.py", line 1127, in _execute_clauseelement
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 93, in get_latest_info_object
+    objects_latest = db.engine.execute("""SELECT *
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 2238, in execute
+    return connection.execute(statement, *multiparams, **params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1006, in execute
+    return self._execute_text(object_, multiparams, params)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1175, in _execute_text
     ret = self._execute_context(
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1317, in _execute_context
     self._handle_dbapi_exception(
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1511, in _handle_dbapi_exception
     util.raise_(
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
     raise exception
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\base.py", line 1277, in _execute_context
     self.dialect.do_execute(
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\engine\default.py", line 593, in do_execute
     cursor.execute(statement, parameters)
-sqlalchemy.exc.DataError: (pyodbc.DataError) ('22007', '[22007] [Microsoft][ODBC SQL Server Driver][SQL Server]Преобразование типа данных nvarchar в тип данных datetime привело к выходу значения за пределы диапазона. (242) (SQLExecDirectW)')
-[SQL: SELECT [Operation].[Name] AS [Operation_Name], [Movement].operation_date AS [Movement_operation_date], [Movement].asinfo AS [Movement_asinfo], [Movement].description AS [Movement_description] 
-FROM [Operation], [Movement], [Objects] 
-WHERE [Objects].oid = ? AND [Movement].operation_date BETWEEN ? AND ?]
-[parameters: ('a7a7e4e0-e986-4e65-b898-26308bb76a70', '2018-05-02 00:00:00.000', '2018-12-18 00:00:00.000')]
-(Background on this error at: http://sqlalche.me/e/13/9h9h)
-2020-07-27 14:02:14,012 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py:1891]
+sqlalchemy.exc.ProgrammingError: (pyodbc.ProgrammingError) ('42000', '[42000] [Microsoft][ODBC SQL Server Driver][SQL Server]Ошибка при преобразовании строки символов в тип uniqueidentifier. (8169) (SQLExecDirectW)')
+[SQL: SELECT *
+										FROM [Objects]
+										JOIN [Movement] ON [Objects].oid = [Movement].oid
+										JOIN [Division] ON [Division].division_id = [Movement].division_id
+										WHERE [Objects].oid = ?]
+[parameters: ('oid',)]
+(Background on this error at: http://sqlalche.me/e/13/f405)
+2020-08-01 00:31:13,504 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:31:16,710 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
     raise value
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 67, in get_report_motion
-    "material_objects": [
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 70, in <listcomp>
-    "date_operation": oidrep.Movement_operation_date,
-AttributeError: 'result' object has no attribute 'Movements'
-2020-07-27 14:02:38,818 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:37]
-2020-07-27 14:02:41,987 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py:1891]
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 99, in get_latest_info_object
+    "object_id": objects_latest.oid,
+AttributeError: 'ResultProxy' object has no attribute 'oid'
+2020-08-01 00:32:46,131 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:33:25,331 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:33:28,574 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
     raise value
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\users\1\appdata\local\programs\python\python38-32\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 67, in get_report_motion
-    "material_objects": [
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 69, in <listcomp>
-    "operation": oidrep.Operation_Name,
-AttributeError: 'result' object has no attribute 'Operation_Name'
-2020-07-27 14:03:34,951 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:37]
-2020-07-27 15:33:35,673 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:37]
-2020-07-27 15:39:08,513 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:37]
-2020-07-27 15:42:53,154 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:37]
-2020-07-27 15:46:36,630 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:37]
-2020-07-27 15:47:32,237 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:37]
-2020-07-27 15:50:22,113 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:37]
-2020-07-27 16:08:49,556 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:38]
-2020-07-27 16:10:30,321 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 16:10:50,342 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 16:14:33,853 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 16:25:07,537 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 16:27:38,980 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 16:29:39,559 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 16:31:27,395 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 16:31:42,260 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 16:47:18,973 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 17:12:11,052 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 17:12:31,010 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
-2020-07-27 17:13:01,908 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 100, in get_latest_info_object
+    "name": objects_latest['object_Name'],
+TypeError: 'ResultProxy' object is not subscriptable
+2020-08-01 00:34:39,761 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:34:51,583 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-01 00:34:54,301 ERROR: Exception on /api/object/a7a7e4e0-e986-4e65-b898-26308bb76a70/latest [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 100, in get_latest_info_object
+    "name": objects_latest[0],
+TypeError: 'ResultProxy' object is not subscriptable
+2020-08-01 00:38:06,671 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
+2020-08-03 22:38:53,691 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:39]
