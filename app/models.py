@@ -85,6 +85,7 @@ class Object(db.Model):
 
 class Movement(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	operation_time = db.Column(db.DateTime)
 	operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'))
 	description = db.Column(db.String(128))
 	asinfo = db.String(128)

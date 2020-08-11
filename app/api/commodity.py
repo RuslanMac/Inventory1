@@ -45,7 +45,7 @@ def get_divisions():
 @cross_origin()
 def add_placement():
 	row = request.get_json()
-	placement = Placements(Name = row['placement'], division_id = row['division'])
+	placement = Placements(Name = row['placement'], division_id = Division.query.filter_by(division_name=row['division']))
 	db.session.add(placement)
 	db.session.commit()
 	return jsonify({'answer': 'ok'  })
@@ -95,26 +95,8 @@ def get_report_motion():
 
 @bp.route('/object/<oid>/latest', methods=['GET'])
 def get_latest_info_object(oid):
-	#objects_latest = db.session.query(Objects, Movements).join(Movements, Objects.oid == Movements.oid  ).filter(Objects.oid == oid).order_by(Movements.operation_date.desc()).first()
-	objects_latest = db.engine.execute("""SELECT *
-										FROM [Objects]
-										JOIN [Movement] ON [Objects].oid = [Movement].oid
-										JOIN [Division] ON [Division].division_id = [Movement].division_id
-										WHERE [Objects].oid = ?""",(oid))
-	object_latest = objects_latest.fetchone()
-	data = {
-		"object_id": object_latest[0], 
-		#"name": objects_latest[0],
-		#"discription": objects_latest.description,
-		#"barcode": objects_latest.barcode,
-		#"operation": objects_latest[1],
-		#"division": objects_latest[2],
-		#"placement": objects_latest[3]
-		#"movement": objects_latest.move_id,
-		#"movement_info": objects_latest.movement_info,
-		#"data": objects_latest.operation_data
+	object_info = Object.query.join(Movement).order_by(operation_time).first()
 
-	}
 	
 
 	return jsonify({'data': data})
