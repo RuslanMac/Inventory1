@@ -88,7 +88,7 @@ class Movement(db.Model):
 	operation_time = db.Column(db.DateTime)
 	operation_id = db.Column(db.Integer, db.ForeignKey('operation.id'))
 	description = db.Column(db.String(128))
-	asinfo = db.String(128)
+	asinfo = db.Column(db.String(128))
 	placement_id = db.Column(db.Integer, db.ForeignKey('placement.id'))
 	from_placement_id = db.Column(db.Integer, db.ForeignKey('placement.id'))
 	oid = db.Column(db.Integer, db.ForeignKey('object.id'))
