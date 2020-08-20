@@ -1,4 +1,4 @@
-2020-08-20 13:56:06,943 ERROR: Exception on /api/report/balance/division/¿’Œ/placement/÷Âı1 [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+2020-08-20 17:30:28,074 ERROR: Exception on /api/object [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -16,11 +16,11 @@ Traceback (most recent call last):
     return f(*args, **kwargs)
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
     resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 290, in get_balance_objects
-    } for the_object in the_objects]
-NameError: name 'the_objects' is not defined
-2020-08-20 13:56:51,959 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 13:56:55,442 ERROR: Exception on /api/report/balance/division/¿’Œ/placement/÷Âı1 [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 288, in object_change_location
+    movement = Movement(oid = the_object, operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, previous_placement_id=placement_id, description=row['movement'], operation_time=datetime.datetime.utcnow(), asinfo=row['movement_info'])
+NameError: name 'placement_id' is not defined
+2020-08-20 17:33:50,655 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 17:35:06,326 ERROR: Exception on /api/object [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -38,29 +38,12 @@ Traceback (most recent call last):
     return f(*args, **kwargs)
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
     resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 285, in get_balance_objects
-    material_objects = [{
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 289, in <listcomp>
-    "movement_info": the_object.asinfo
-AttributeError: 'Object' object has no attribute 'asinfo'
-2020-08-20 13:57:39,583 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:11:23,617 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:12:50,961 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:03,519 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:15,269 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:24,554 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:28,961 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:43,190 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:14:09,352 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:14:21,959 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:14:27,178 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:15:28,370 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:15:48,156 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:15:54,574 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:16:30,438 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:16:37,787 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:18:58,089 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:20:58,341 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 288, in object_change_location
+    placement_id=Object.query.join(Movement).order_by(Movement.operation_time.desc()).first().placement_id
+AttributeError: 'Object' object has no attribute 'placement_id'
+2020-08-20 17:39:00,974 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 17:39:08,360 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 17:39:31,307 ERROR: Exception on /api/object [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -78,10 +61,31 @@ Traceback (most recent call last):
     return f(*args, **kwargs)
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
     resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 254, in get_add_object
-    the_objectx = Object(id=row['object_id'], name=row['name'], description=row['description'], barcode=row['barcode'])
-KeyError: 'description'
-2020-08-20 15:21:30,951 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 289, in object_change_location
+    movement = Movement(oid = the_object, operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, previous_placement_id= placement_id, description=row['movement'], operation_time=datetime.datetime.utcnow(), asinfo=row['movement_info'])
+  File "<string>", line 4, in __init__
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\state.py", line 433, in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\langhelpers.py", line 68, in __exit__
+    compat.raise_(
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\util\compat.py", line 178, in raise_
+    raise exception
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\orm\state.py", line 430, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\sqlalchemy\ext\declarative\base.py", line 839, in _declarative_constructor
+    raise TypeError(
+TypeError: 'previous_placement_id' is an invalid keyword argument for Movement
+2020-08-20 17:40:11,335 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 17:42:10,341 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 17:44:05,481 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 17:44:28,712 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 239, in check_placement
+    previous_placement = Placement.query.filter_by(id=object_reports.from_placement_id).first().placement_name
+AttributeError: 'AppenderBaseQuery' object has no attribute 'from_placement_id'
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -99,6 +103,10 @@ Traceback (most recent call last):
     return f(*args, **kwargs)
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
     resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 258, in get_add_object
-    movement = Movement(oid =row['object_id'], operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, description=row['movement'],  operation_time=datetime.datetime.strptime(row['date'], '%Y-%m-%d %H:%M:%S'), asinfo=row['movement_info'])
-AttributeError: 'NoneType' object has no attribute 'id'
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 248, in get_report_motion
+    data =  [{
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 252, in <listcomp>
+    "previous_placement":  check_placement(object_report),
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 241, in check_placement
+    except NoneType:
+NameError: name 'NoneType' is not defined

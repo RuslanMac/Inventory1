@@ -76,8 +76,8 @@ from datetime import datetime, timedelta
 
 class Object(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(128), index=True, unique=True)
-	barcode = db.Column(db.Integer, index=True, unique=True)
+	name = db.Column(db.String(128), index=True)
+	barcode = db.Column(db.Integer, index=True)
 	inv_number = db.Column(db.Integer, index=True, unique=True)
 	description = db.Column(db.String(128))
 	asstatus = db.Column(db.String(128))
@@ -101,7 +101,7 @@ class Operation(db.Model):
 
 class Division(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	division_name = db.Column(db.String(128))
+	division_name = db.Column(db.String(128), unique=True)
 	placements = db.relationship('Placement', backref='division', lazy='dynamic')
 
 class Placement(db.Model):
@@ -127,7 +127,7 @@ class Worker(UserMixin, db.Model):
 	def check_password(self, password):
 		return check_password_hash(self.password_hash, password)
 
-	def get_token(self, expires_in=3600):
+	def get_token(self, expires_in=7200):
 		now = datetime.utcnow()
 		if self.token and self.token_expiration > now + timedelta(seconds=60):
 			return self.token 

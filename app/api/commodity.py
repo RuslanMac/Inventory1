@@ -25,7 +25,7 @@ def get_object():
 @cross_origin()
 @token_auth.login_required
 def get_operations():
-	operations = Operation.query.all()
+	operations = Operation.query.order_by(Operation.name).filter(Operation.id.between(2,7)).all()
 	data = {
 			'operations': [operation.name for operation in operations]
 	}
@@ -35,7 +35,7 @@ def get_operations():
 @token_auth.login_required
 @cross_origin()
 def get_divisions():
-	divisions = Division.query.all()
+	divisions = Division.query.order_by(Division.division_name).all()
 	data = [division.division_name for division in divisions]
 
 	return jsonify(data)  
@@ -47,7 +47,7 @@ def get_divisions():
 @cross_origin()
 def add_placement():
 	row = request.get_json()
-	placement = Placement(placement_name = row['placement'], division_id = Division.query.filter_by(division_name=row['division_name']).first().id)
+	placement = Placement(placement_name = row['placement'], division_id = Division.query.filter_by(division_name=row['division']).first().id)
 	db.session.add(placement)
 	db.session.commit()
 	return jsonify({'answer': 'ok'  })
@@ -58,7 +58,7 @@ def add_placement():
 @cross_origin()
 def placements(division):
 	#placements = Placement.query.filter_by(division_id =Division.query.filter_by(division_name=division).id).all()
-	placement = Division.query.filter_by(division_name=division).first().placements.all()
+	placements = Division.query.filter_by(division_name=division).first().placements.all()
 	data = [placement.placement_name for placement in placements]
 
 	return jsonify(data)
@@ -139,24 +139,50 @@ def add_new_objects():
 def get_objects():
 	row = request.get_json()
 	the_objects = Object.query
-	if row['object_id'] is not None:
+	if 'object_id' in row and row['object_id'] is not None:
 		search = "{}%".format(row['object_id'])
 
 		the_objects = the_objects.filter(Object.id.like(search))
-	if row['barcode']:
+
+
+	if 'barcode' in row and row['barcode']!="":
 		search = "{}%".format(row['barcode'])
 
 		the_objects = the_objects.filter(Object.barcode.like(search))
 
-	if row['name']:
+	if 'name' in row and row['name']!="":
 		search = "{}%".format(row['name'])
 
 		the_objects = the_objects.filter(Object.name.like(search))
 
-	if row['placement']:
-		the_objects_movements = the_objects.all().movements
+	if 'placement' in row and row['placement']!="": 
+
+
+		the_objects = the_objects.join(Movement).filter_by(placement_id=Placement.query.filter_by(placement_name=row['placement']).first().id)
+		
+		the_objects_movements = the_objects
 
 		the_objects_movements = the_objects_movements.filter_by(placement_id=row['placement'])
+
+	if 'movement' in row and row['movement']!="":
+
+		search = "{}%".format(row['movement'])
+
+		the_objects = the_objects.filter(Object.description.like(search))
+
+	if  'movement_info' in row and  row['movement_info']!="":
+
+		search = "{}%".format(row['movement_info'])
+
+		the_objects = the_objects.filter(Object.asstatus.like(search))
+
+
+
+
+
+	
+
+
 
 		
 	'''if row['name']:
@@ -174,19 +200,21 @@ def get_objects():
 		pass
 	if row['movement_info']:
 		pass'''
+	the_objects = the_objects.all()
+	
 
 	data = [{
-				'object_id': the_object.object_id,
+				'object_id': the_object.id,
 				'barcode': the_object.barcode,
 				'name': the_object.name,
-				'placement': the_object.placement,
-				'division': the_object.division_name,
+				'placement': Placement.query.filter_by(id = the_object.movements.order_by(Movement.operation_time.desc()).first().placement_id).first().placement_name,
+				'division': Division.query.filter_by(id= Placement.query.filter_by(id = the_object.movements.order_by(Movement.operation_time.desc()).first().placement_id).first().division_id).first().division_name,
 				'movement': the_object.description,
-				'movement_info': the_object.asstatus        
+				'movement_info': the_object.join(Movement).order_by(Movement.operation_time.desc()).first().asinfo        
 
 			}
 			 for the_object in the_objects]
-	return jsonify({'data': data})
+	return jsonify( data)
 
 
 
@@ -204,15 +232,30 @@ def get_report_motion():
 	object1 = Object.query.get(object_id)
 	object_reports = Object.query.filter_by(id = object_id).first().movements
 
+	def check_placement(object_report):
+
+
+		try:
+			previous_placement = Placement.query.filter_by(id=object_report.from_placement_id).first().placement_name
+			return previous_placement
+		except :
+			previous_placement = ""
+			return previous_placement
+
+
+	
+
 	data =  [{
-				"operation": object_report.operation_id,
+				"operation": Operation.query.filter_by(id= object_report.operation_id).first().name,
 				"date_operation": object_report.operation_time,
-				"placement": Placement.query.get(object_report.placement_id).placement_name,
-				"previous_placement":   Placement.query.get(object_report.from_placement_id).placement_name,  
+				"placement": Placement.query.filter_by(id = object_report.placement_id).first().placement_name,
+				"previous_placement":  check_placement(object_report),  
 				"movement": object_report.description,
-				"movement_info": object1.asstatus
+				"movement_info": object_report.asinfo
 	} for object_report in object_reports]
-	return jsonify({"object_id": object1.id,  
+	return jsonify({
+					"object_id": object1.id,
+					"date": datetime.datetime.utcnow(),
 					"name": object1.name,
 					"material_objects": data})
 
@@ -225,11 +268,23 @@ def get_report_motion():
 @cross_origin()
 def get_add_object():
 	row = request.get_json()
-	the_objectx = Object(id=row['object_id'], name=row['name'], description=row['description'], barcode=row['barcode'])
+	barcode=None
+	description=""
+	movement=""
+	movement_info=""
+	if 'barcode' in row:
+		barcode = row['barcode']
+	if 'description' in  row:
+		description = row['description']
+	if 'movement' in row :
+		movement=row['movement']
+	if 'movement_info' in row :
+		movement_info = row['movement_info']
+	the_objectx = Object(id=row['object_id'], name=row['name'], description=description, barcode=barcode)
 	db.session.add(the_objectx)
 	db.session.commit()
 	name=row['operation']
-	movement = Movement(oid =row['object_id'], operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, description=row['movement'],  operation_time=datetime.datetime.strptime(row['date'], '%Y-%m-%d %H:%M:%S'), asinfo=row['movement_info'])
+	movement = Movement(oid =row['object_id'], operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, description=movement,  operation_time=datetime.datetime.utcnow(), asinfo=movement_info)
 	db.session.add(movement)
 	db.session.commit()
 	return jsonify({'answer': 'ok'})  
@@ -240,13 +295,14 @@ def get_add_object():
 
 
 
-@bp.route('/object')
+@bp.route('/object', methods=['POST'])
 @token_auth.login_required
 @cross_origin()
 def object_change_location():
 	row = request.get_json()
 	the_object = row['object_id']
-	movement = Movement(oid = the_object, operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, description=row['movement'], operation_time=datetime.datetime.strptime(row['date'],  '%Y-%m-%d %H:%M:%S'), asinfo=row['movement_info'])
+	placement_id=Object.query.filter_by(id=row['object_id']).first().movements.order_by(Movement.operation_time.desc()).first().placement_id
+	movement = Movement(oid = the_object, operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, from_placement_id=placement_id, description=row['movement'], operation_time=datetime.datetime.utcnow(), asinfo=row['movement_info'])
 	db.session.add(movement)
 	db.session.commit()
 	return jsonify({'answer': 'ok  '})
@@ -261,6 +317,7 @@ def add_the_division():
 	division = Division(division_name=row['division'])
 	db.session.add(division)
 	db.session.commit()
+	return jsonify({'answer': 'ok'})
 
 
 
@@ -268,10 +325,22 @@ def add_the_division():
 @bp.route('/report/balance/division/<division>/placement/<placement>', methods=['GET'])
 @token_auth.login_required
 @cross_origin()
-def get_balance_objects():
-	objects = Object.query.all()
+def get_balance_objects(division, placement):
+	objects = Object.query.join(Movement).filter(Movement.placement_id == Placement.query.filter_by(placement_name=placement).first().id).all()
 
+	material_objects = [{
+						"name": the_object.name,
+						"object_id": the_object.id,
+						"movement": the_object.description,
+						"movement_info": the_object.movements.order_by(Movement.operation_time.desc()).first().asinfo
+	} for the_object in objects]
 
+	return jsonify(
+					{"date": datetime.datetime.utcnow(),
+					 "division": division,
+					 "placement": placement,
+					"material_objects": material_objects}
+		)
 
 
 

@@ -1,4 +1,27 @@
-2020-08-20 13:56:06,943 ERROR: Exception on /api/report/balance/division/¿’Œ/placement/÷Âı1 [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+2020-08-20 15:54:29,589 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 206, in get_objects
+    data = [{
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 211, in <listcomp>
+    'division': Division.query.filter_by(id= Placement.query.filter_by(id = the_object.movements.order_by(Movement.operation_time.desc()).first().placement_id).first().division_id).first().divisioan_name,
+AttributeError: 'Division' object has no attribute 'divisioan_name'
+2020-08-20 15:54:46,722 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 15:58:03,765 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 16:00:21,102 ERROR: Exception on /api/placement/undefined [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -16,11 +39,13 @@ Traceback (most recent call last):
     return f(*args, **kwargs)
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
     resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 290, in get_balance_objects
-    } for the_object in the_objects]
-NameError: name 'the_objects' is not defined
-2020-08-20 13:56:51,959 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 13:56:55,442 ERROR: Exception on /api/report/balance/division/¿’Œ/placement/÷Âı1 [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 61, in placements
+    placements = Division.query.filter_by(division_name=division).first().placements.all()
+AttributeError: 'NoneType' object has no attribute 'placements'
+2020-08-20 16:06:29,146 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 16:06:40,883 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 16:11:54,863 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 16:13:07,467 ERROR: Exception on /api/report/balance/division/¡Ûı„‡ÎÚÂËˇ/placement/ŒÚ‰ÂÎ_404 [GET] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -38,67 +63,56 @@ Traceback (most recent call last):
     return f(*args, **kwargs)
   File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
     resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 285, in get_balance_objects
-    material_objects = [{
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 289, in <listcomp>
-    "movement_info": the_object.asinfo
-AttributeError: 'Object' object has no attribute 'asinfo'
-2020-08-20 13:57:39,583 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:11:23,617 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:12:50,961 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:03,519 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:15,269 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:24,554 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:28,961 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:13:43,190 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:14:09,352 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:14:21,959 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:14:27,178 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:15:28,370 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:15:48,156 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:15:54,574 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:16:30,438 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:16:37,787 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:18:58,089 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
-2020-08-20 15:20:58,341 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
-    return f(*args, **kwargs)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
-    resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 254, in get_add_object
-    the_objectx = Object(id=row['object_id'], name=row['name'], description=row['description'], barcode=row['barcode'])
-KeyError: 'description'
-2020-08-20 15:21:30,951 ERROR: Exception on /api/object/new [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
-    return f(*args, **kwargs)
-  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
-    resp = make_response(f(*args, **kwargs))
-  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 258, in get_add_object
-    movement = Movement(oid =row['object_id'], operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, description=row['movement'],  operation_time=datetime.datetime.strptime(row['date'], '%Y-%m-%d %H:%M:%S'), asinfo=row['movement_info'])
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 301, in get_balance_objects
+    objects = Object.query.join(Movement).filter(Movement.placement_id == Placement.query.filter_by(placement_name=placement).first().id).all()
 AttributeError: 'NoneType' object has no attribute 'id'
+2020-08-20 16:20:06,169 ERROR: Exception on /api/object [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 277, in object_change_location
+    movement = Movement(oid = the_object, operation_id=Operation.query.filter_by(name=row['operation']).first().id, placement_id =Placement.query.filter_by(placement_name=row['placement']).first().id, description=row['movement'], operation_time=datetime.datetime.strptime(row['date'],  '%Y-%m-%d %H:%M:%S'), asinfo=row['movement_info'])
+  File "C:\Users\1\AppData\Local\Programs\Python\Python38-32\lib\_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "C:\Users\1\AppData\Local\Programs\Python\Python38-32\lib\_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '2020-08-20T09:20:05.607Z' does not match format '%Y-%m-%d %H:%M:%S'
+2020-08-20 16:25:00,157 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 16:26:03,995 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:42]
+2020-08-20 16:32:20,604 ERROR: Exception on /api/report/motion [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_httpauth.py", line 163, in decorated
+    return f(*args, **kwargs)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 235, in get_report_motion
+    data =  [{
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 239, in <listcomp>
+    "previous_placement":   Placement.query.get(object_report.from_placement_id).placement_name,
+AttributeError: 'NoneType' object has no attribute 'placement_name'
