@@ -13,5 +13,6 @@ class Config(object):
 	'''params = urllib.parse.quote_plus('DRIVER={SQL Server};SERVER=DESKTOP-19PT7TH;DATABASE=Test1DB;Trusted_Connection=yes;')
 	SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc:///?odbc_connect=%s' % params'''
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
+	LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
 
 	
