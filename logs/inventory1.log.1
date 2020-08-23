@@ -1,0 +1,116 @@
+2020-08-23 14:18:43,819 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 14:21:58,879 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 14:22:19,787 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 14:29:09,146 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 14:53:08,560 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 14:53:52,785 ERROR: Exception on /api/register [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 70, in register
+    password = row['password']
+TypeError: 'NoneType' object is not subscriptable
+2020-08-23 15:53:10,920 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 16:07:59,265 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 16:10:07,770 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 16:10:10,913 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 211, in get_objects
+    data = [{
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 218, in <listcomp>
+    'movement_info': the_object.join(Movement).order_by(Movement.operation_time.desc()).first().asinfo
+AttributeError: 'Object' object has no attribute 'join'
+2020-08-23 16:15:16,649 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 16:19:20,695 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 16:40:41,217 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 16:40:49,460 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]
+2020-08-23 16:40:52,660 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 211, in get_objects
+    data = [{
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 215, in <listcomp>
+    'placement': Placement.query.filter_by(id = the_object.movements.order_by(Movement.operation_time.desc()).first().placement_id).first().placement_name,
+AttributeError: 'NoneType' object has no attribute 'placement_id'
+2020-08-23 16:40:59,612 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 211, in get_objects
+    data = [{
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 215, in <listcomp>
+    'placement': Placement.query.filter_by(id = the_object.movements.order_by(Movement.operation_time.desc()).first().placement_id).first().placement_name,
+AttributeError: 'NoneType' object has no attribute 'placement_id'
+2020-08-23 16:41:31,410 ERROR: Exception on /api/object/find [POST] [in c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py:1891]
+Traceback (most recent call last):
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\1\inventory2\inventory1\venv\lib\site-packages\flask_cors\decorator.py", line 128, in wrapped_function
+    resp = make_response(f(*args, **kwargs))
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 211, in get_objects
+    data = [{
+  File "C:\Users\1\inventory2\inventory1\app\api\commodity.py", line 215, in <listcomp>
+    'placement': Placement.query.filter_by(id = the_object.movements.order_by(Movement.operation_time.desc()).first().placement_id).first().placement_name,
+AttributeError: 'NoneType' object has no attribute 'placement_id'
+2020-08-23 16:47:33,830 INFO: Inventory1 startup [in C:\Users\1\inventory2\inventory1\app\__init__.py:55]

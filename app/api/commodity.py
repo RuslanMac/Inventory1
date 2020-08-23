@@ -1,11 +1,14 @@
 from flask import jsonify, request, current_app
 from app import db
+import sqlalchemy
 from app.models import Object, Worker, Movement, Division, Placement, Operation
 from app.api import bp
 from app.api.auth import token_auth
 from app.api.errors import error_response, bad_request
 from sqlalchemy import text
 from flask_cors import CORS, cross_origin
+from sqlalchemy.sql.expression import cast
+
 import datetime
 
 
@@ -147,7 +150,7 @@ def get_objects():
 	if 'object_id' in row and row['object_id'] is not None:
 		search = "{}%".format(row['object_id'])
 
-		the_objects = the_objects.filter(Object.id.ilike(search))
+		the_objects = the_objects.filter(cast(Object.id, sqlalchemy.String).ilike(search))
 
 
 	if 'barcode' in row and row['barcode']!="":
