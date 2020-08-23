@@ -14,32 +14,41 @@ import os
 
 
 
-app = Flask(__name__)
-app.config.from_object(Config)
+
 #CORS(app)
 
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 
-migrate = Migrate(app, db)
+migrate = Migrate()
 
-login = LoginManager(app)
+login = LoginManager()
+
+def create_app(config_class=Config):
+	app = Flask(__name__)
+	app.config.from_object(config_class)
+
+	db.init_app(app)
+	migrate.init_app(app, db)
+	login.init_app(app)
 
 
-from app.api import bp as api_bp
-app.register_blueprint(api_bp, url_prefix='/api')
+	from app.api import bp as api_bp
+	app.register_blueprint(api_bp, url_prefix='/api')
 
 
-if not os.path.exists('logs'):
-	os.mkdir('logs')
-file_handler = RotatingFileHandler('logs/inventory1.log', maxBytes=10240, backupCount=10)
-file_handler.setFormatter(logging.Formatter(
-	'%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
-file_handler.setLevel(logging.INFO)
-app.logger.addHandler(file_handler)
+	if not os.path.exists('logs'):
+		os.mkdir('logs')
+		file_handler = RotatingFileHandler('logs/inventory1.log', maxBytes=10240, backupCount=10)
+		file_handler.setFormatter(logging.Formatter(
+			'%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
+		file_handler.setLevel(logging.INFO)
+		app.logger.addHandler(file_handler)
 
-app.logger.setLevel(logging.INFO)
-app.logger.info('Inventory1 startup')
+		app.logger.setLevel(logging.INFO)
+		app.logger.info('Inventory1 startup')
+
+	return app
 
 
 
