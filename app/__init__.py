@@ -8,8 +8,8 @@ from config import Config
 from logging.handlers import RotatingFileHandler
 from sqlalchemy.ext.automap import automap_base
 from flask_sqlalchemy import SQLAlchemy
-import urllib
-import pyodbc
+
+
 import os
 
 
