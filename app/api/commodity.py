@@ -141,45 +141,45 @@ def add_new_objects():
 @bp.route('/object/find', methods=['POST'])
 @cross_origin()
 def get_objects():
-	try:
-		row = request.get_json()
-		the_objects = Object.query
-		if 'object_id' in row and row['object_id'] is not None:
-			search = "{}%".format(row['object_id'])
+	
+	row = request.get_json()
+	the_objects = Object.query
+	if 'object_id' in row and row['object_id'] is not None:
+		search = "{}%".format(row['object_id'])
 
-			the_objects = the_objects.filter(Object.id.like(search))
-
-
-		if 'barcode' in row and row['barcode']!="":
-			search = "{}%".format(row['barcode'])
-
-			the_objects = the_objects.filter(Object.barcode.like(search))
-
-		if 'name' in row and row['name']!="":
-			search = "{}%".format(row['name'])
-
-			the_objects = the_objects.filter(Object.name.like(search))
-
-		if 'placement' in row and row['placement']!="": 
+		the_objects = the_objects.filter(Object.id.like(search))
 
 
-			the_objects = the_objects.join(Movement).filter_by(placement_id=Placement.query.filter_by(placement_name=row['placement']).first().id)
+	if 'barcode' in row and row['barcode']!="":
+		search = "{}%".format(row['barcode'])
+
+		the_objects = the_objects.filter(Object.barcode.like(search))
+
+	if 'name' in row and row['name']!="":
+		search = "{}%".format(row['name'])
+
+		the_objects = the_objects.filter(Object.name.like(search))
+
+	if 'placement' in row and row['placement']!="": 
+
+
+		the_objects = the_objects.join(Movement).filter_by(placement_id=Placement.query.filter_by(placement_name=row['placement']).first().id)
 			
-			the_objects_movements = the_objects
+		the_objects_movements = the_objects
 
-			the_objects_movements = the_objects_movements.filter_by(placement_id=row['placement'])
+		the_objects_movements = the_objects_movements.filter_by(placement_id=row['placement'])
 
-		if 'movement' in row and row['movement']!="":
+	if 'movement' in row and row['movement']!="":
 
-			search = "{}%".format(row['movement'])
+		search = "{}%".format(row['movement'])
 
-			the_objects = the_objects.filter(Object.description.like(search))
+		the_objects = the_objects.filter(Object.description.like(search))
 
-		if  'movement_info' in row and  row['movement_info']!="":
+	if  'movement_info' in row and  row['movement_info']!="":
 
-			search = "{}%".format(row['movement_info'])
+		search = "{}%".format(row['movement_info'])
 
-			the_objects = the_objects.filter(Object.asstatus.like(search))
+		the_objects = the_objects.filter(Object.asstatus.like(search))
 
 
 
@@ -205,24 +205,22 @@ def get_objects():
 			pass
 		if row['movement_info']:
 			pass'''
-		the_objects = the_objects.all()
+	the_objects = the_objects.all()
 		
 
-		data = [{
+	data = [{
 					'object_id': the_object.id,
 					'barcode': the_object.barcode,
 					'name': the_object.name,
 					'placement': Placement.query.filter_by(id = the_object.movements.order_by(Movement.operation_time.desc()).first().placement_id).first().placement_name,
 					'division': Division.query.filter_by(id= Placement.query.filter_by(id = the_object.movements.order_by(Movement.operation_time.desc()).first().placement_id).first().division_id).first().division_name,
 					'movement': the_object.description,
-					'movement_info': the_object.join(Movement).order_by(Movement.operation_time.desc()).first().asinfo        
+					'movement_info': the_object.movements.order_by(Movement.operation_time.desc()).first().asinfo        
 
-				}
-				 for the_object in the_objects]
-		return jsonify( data)
-	except:
-		return bad_request("No objects with such parametrs")
-
+			}
+				for the_object in the_objects]
+	return jsonify( data)
+	
 
 
 
