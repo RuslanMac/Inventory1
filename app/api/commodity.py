@@ -156,7 +156,7 @@ def get_objects():
 	if 'barcode' in row and row['barcode']!="":
 		search = "{}%".format(row['barcode'])
 
-		the_objects = the_objects.filter(Object.barcode.ilike(search))
+		the_objects = the_objects.filter(cast(Object.barcode, sqlalchemy.String).ilike(search))
 
 	if 'name' in row and row['name']!="":
 		search = "{}%".format(row['name'])
