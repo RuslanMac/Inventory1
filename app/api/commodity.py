@@ -147,18 +147,18 @@ def get_objects():
 	if 'object_id' in row and row['object_id'] is not None:
 		search = "{}%".format(row['object_id'])
 
-		the_objects = the_objects.filter(Object.id.like(search))
+		the_objects = the_objects.filter(Object.id.ilike(search))
 
 
 	if 'barcode' in row and row['barcode']!="":
 		search = "{}%".format(row['barcode'])
 
-		the_objects = the_objects.filter(Object.barcode.like(search))
+		the_objects = the_objects.filter(Object.barcode.ilike(search))
 
 	if 'name' in row and row['name']!="":
 		search = "{}%".format(row['name'])
 
-		the_objects = the_objects.filter(Object.name.like(search))
+		the_objects = the_objects.filter(Object.name.ilike(search))
 
 	if 'placement' in row and row['placement']!="": 
 
@@ -173,13 +173,13 @@ def get_objects():
 
 		search = "{}%".format(row['movement'])
 
-		the_objects = the_objects.filter(Object.description.like(search))
+		the_objects = the_objects.filter(Object.description.ilike(search))
 
 	if  'movement_info' in row and  row['movement_info']!="":
 
 		search = "{}%".format(row['movement_info'])
 
-		the_objects = the_objects.filter(Object.asstatus.like(search))
+		the_objects = the_objects.filter(Object.asstatus.ilike(search))
 
 
 
